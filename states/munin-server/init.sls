@@ -2,6 +2,15 @@ apache2-mpm-prefork:
   pkg:
     - installed
 
+apache2:
+  service:
+    - running
+    - watch:
+      - file: /etc/munin/apache.conf
+    - enable: True
+    - require:
+      - pkg: apache2-mpm-prefork
+
 munin:
   pkg:
     - installed
